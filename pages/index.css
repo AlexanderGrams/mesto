@@ -3,3 +3,12 @@
 
 /* подключение шрифтов */
 @import url(../vendor/fonts/fonts.css);
+
+/* стили body */
+@import url(../blocks/body/body.css);
+
+/* стили page */
+@import url(../blocks/page/page.css);
+
+/* стили header */
+@import url(../blocks/header/header.css);
