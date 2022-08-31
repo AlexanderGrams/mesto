@@ -1,0 +1,12 @@
+.popup__editing-profille {
+  margin: 0 0 48px 0;
+  padding: 0;
+  border: none;
+  width: 100%;
+}
+
+@media screen and (max-width: 500px) {
+  .popup__editing-profille {
+    margin: 0 0 45px 0;
+  }
+}

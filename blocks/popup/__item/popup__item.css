@@ -1,0 +1,27 @@
+.popup__item {
+  box-sizing: border-box;
+  margin: 30px 0 0 0;
+  padding: 3px 0 12px 0;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #00000033;
+  background-color: transparent;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.21;
+  color: #000000;
+  position: relative;
+  box-shadow: 0 0 0 30px white inset;
+}
+
+.popup__item:first-child {
+  margin: 0;
+}
+
+.popup__item:focus-visible {
+  outline: none;
+  box-shadow: 0 0 2px 3px #71aaff, 0 0 0 30px white inset;
+  border-radius: 3px;
+  padding: 6px 0 9px 4px;
+}
