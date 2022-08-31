@@ -4,3 +4,10 @@
   max-width: 880px;
   width: 100%;
 }
+
+@media screen and (max-width: 934px) {
+  .gallery {
+    margin: 36px auto 0 auto;
+    width: calc(100% - 38px);
+  }
+}
