@@ -10,14 +10,13 @@
 
 @media screen and (max-width: 934px){
   .profile{
-    margin: 40px 19px 0 19px;
     width: calc(100% - 54px);
   }
 }
 
 @media screen and (max-width: 720px){
   .profile{
-    margin: 42px 19px 0 19px;
+    margin: 42px auto 0 auto;
     grid-template-columns: 1fr;
     justify-items: center;
     grid-row-gap: 26px;
