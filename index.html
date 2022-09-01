@@ -17,10 +17,10 @@
         <img class="profile__avatar" src="./images/avatar.jpg" alt="аватар профиля">
         <div class="profile__info">
           <h1 class="profile__title">Жак-Ив Кусто</h1>
-          <button class="profile__info-button"></button>
+          <button class="profile__info-button" type="button"></button>
           <p class="profile__subtitle">Исследователь океана</p>
         </div>
-        <button class="profile__button"></button>
+        <button class="profile__button" type="button"></button>
       </section>
       <section class="gallery" aria-label="Секция с картинками профиля">
         <ul class="gallery__cards">
@@ -28,7 +28,7 @@
             <img class="gallery__card-image" src="./images/gallery_Karachayevsk.jpg" alt="фото места Карачаевск">
             <div class="gallery__card-interaction">
               <h3 class="gallery__card-title">Карачаевск</h3>
-              <button class="gallery__card-like gallery__card-like_active"></button>
+              <button class="gallery__card-like"></button>
             </div>
           </li>
           <li class="gallery__card">
@@ -63,7 +63,7 @@
             <img class="gallery__card-image" src="./images/gallery_Karachayevsk.jpg" alt="фото места Карачаево-Черкессия">
             <div class="gallery__card-interaction">
               <h3 class="gallery__card-title">Карачаево-Черкессия</h3>
-              <button class="gallery__card-like"></button>
+              <button class="gallery__card-like" type="button"></button>
             </div>
           </li>
         </ul>
@@ -84,9 +84,10 @@
           </fieldset>
           <input class="popup__button" type="submit" value="Сохранить">
         </form>
-        <div class="popup__close"></div>
+        <div class="popup__close" type="button"></div>
       </div>
     </section>
   </div>
+  <script src="./index.js"></script>
 </body>
 </html>
