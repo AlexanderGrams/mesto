@@ -2,6 +2,10 @@
   position: absolute;
   bottom: 102%;
   left: 102%;
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
   background-image: url(../../../images/popup__close.svg);
   background-position: center;
   background-size: cover;
