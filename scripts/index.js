@@ -5,8 +5,8 @@ let profileSubtitle = profile.querySelector('.profile__subtitle');
 
 let popup = document.querySelector('.popup');
 let popupBtnClose = popup.querySelector('.popup__close');
-let popupInputName = popup.querySelector('.popup__input_type_name');
-let popupInputActivity = popup.querySelector('.popup__input_type_activity');
+let popupInputName = popup.querySelector('.popup__item_type_name');
+let popupInputActivity = popup.querySelector('.popup__item_type_activity');
 let formElement = popup.querySelector('.popup__form-admin');
 
 
