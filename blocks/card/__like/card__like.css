@@ -1,6 +1,7 @@
-.gallery__card-like {
+.card__like {
+  width: 22px;
   min-width: 22px;
-  min-height: 19px;
+  height: 19px;
   margin: 0;
   padding: 0;
   background-color: transparent;
@@ -9,11 +10,10 @@
   background-size: cover;
   border: none;
   cursor: pointer;
-  transition: opacity 0.1s linear,
-              background-image 0.2s linear;
+  transition: opacity 0.1s linear;
 }
 
-.gallery__card-like:hover {
+.card__like:hover {
   opacity: 0.5;
 }
 

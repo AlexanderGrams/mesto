@@ -4,25 +4,25 @@ let profileTitle = profile.querySelector('.profile__title');
 let profileSubtitle = profile.querySelector('.profile__subtitle');
 
 let popup = document.querySelector('.popup');
-let popupBtnCloce = popup.querySelector('.popup__close');
-let popupItemName = popup.querySelector('.popup__item_name');
-let popupItemActivity = popup.querySelector('.popup__item_activity');
-let popupBtnSave = popup.querySelector('.popup__form-admin');
+let popupBtnClose = popup.querySelector('.popup__close');
+let popupInputName = popup.querySelector('.popup__input_type_name');
+let popupInputActivity = popup.querySelector('.popup__input_type_activity');
+let formElement = popup.querySelector('.popup__form-admin');
 
 
 
 // функция сохраняющая измененные данные
 function formSubmitHandler(event){
   event.preventDefault();
-  profileTitle.textContent = popupItemName.value;
-  profileSubtitle.textContent = popupItemActivity.value;
+  profileTitle.textContent = popupInputName.value;
+  profileSubtitle.textContent = popupInputActivity.value;
   closePopup();
 };
 
 // функция заполняющая текстом значения в полях ввода
 function fillingWithText(){
-  popupItemName.value = profileTitle.textContent;
-  popupItemActivity.value = profileSubtitle.textContent;
+  popupInputName.value = profileTitle.textContent;
+  popupInputActivity.value = profileSubtitle.textContent;
 };
 
 // функция открывающая popup
@@ -42,8 +42,8 @@ function closePopup(){
 profileBtnInfo.addEventListener('click', openPopup);
 
 // событие закрывающее popup
-popupBtnCloce.addEventListener('click', closePopup);
+popupBtnClose.addEventListener('click', closePopup);
 
 // событие сохраняющее изменненные данные
-popupBtnSave.addEventListener('submit', formSubmitHandler);
+formElement.addEventListener('submit', formSubmitHandler);
 

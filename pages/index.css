@@ -23,15 +23,18 @@
 @import url(../blocks/profile/__subtitle/profile__subtitle.css);
 @import url(../blocks/profile/__button/profile__button.css);
 
+/* стили cadr */
+@import url(../blocks/card/card.css);
+@import url(../blocks/card/__image/card__image.css);
+@import url(../blocks/card/__interaction/card__interaction.css);
+@import url(../blocks/card/__title/card__title.css);
+@import url(../blocks/card/__like/card__like.css);
+@import url(../blocks/card/__like/_active/card__like_active.css);
+
 /* стили gallery */
 @import url(../blocks/gallery/gallery.css);
 @import url(../blocks/gallery/__cards/gallery__cards.css);
 @import url(../blocks/gallery/__card/gallery__card.css);
-@import url(../blocks/gallery/__card-image/gallery__card-image.css);
-@import url(../blocks/gallery/__card-interaction/gallery__card-interaction.css);
-@import url(../blocks/gallery/__card-title/gallery__card-title.css);
-@import url(../blocks/gallery/__card-like/gallery__card-like.css);
-@import url(../blocks/gallery/__card-like/_active/gallery__card-like_active.css);
 
 /* стили footer */
 @import url(../blocks/footer/footer.css);

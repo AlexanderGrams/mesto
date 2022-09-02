@@ -5,7 +5,7 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 1.22;
-  color: #FFFFFF;
+  color: #fff;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -20,6 +20,7 @@
 @media screen and (max-width: 500px) {
   .profile__subtitle {
     font-size: 14px;
+    line-height: 1.21;
     text-align: center;
   }
 }

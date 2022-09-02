@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mesto</title>
+    <title>Место</title>
     <link rel="stylesheet" href="./pages/index.css">
 </head>
 <body class="body">
@@ -24,46 +24,46 @@
       </section>
       <section class="gallery" aria-label="Секция с картинками профиля">
         <ul class="gallery__cards">
-          <li class="gallery__card">
-            <img class="gallery__card-image" src="./images/gallery_Venetia.jpg" alt="фото места Венеция">
-            <div class="gallery__card-interaction">
-              <h3 class="gallery__card-title">Венеция</h3>
-              <button class="gallery__card-like"></button>
+          <li class="gallery__card card">
+            <img class="card__image" src="./images/gallery_Venetia.jpg" alt="фото места Венеция">
+            <div class="card__interaction">
+              <h2 class="card__title">Венеция</h2>
+              <button class="card__like" type="button"></button>
             </div>
           </li>
-          <li class="gallery__card">
-            <img class="gallery__card-image" src="./images/gallery_Kazan-Cathedral.jpg" alt="фото места Казанский собор">
-            <div class="gallery__card-interaction">
-              <h3 class="gallery__card-title">Казанский собор</h3>
-              <button class="gallery__card-like"></button>
+          <li class="gallery__card card">
+            <img class="card__image" src="./images/gallery_Kazan-Cathedral.jpg" alt="фото места Казанский собор">
+            <div class="card__interaction">
+              <h2 class="card__title">Казанский собор</h2>
+              <button class="card__like" type="button"></button>
             </div>
           </li>
-          <li class="gallery__card">
-            <img class="gallery__card-image" src="./images/gallery_lake-Braies.jpg" alt="фото места озеро Брайзес">
-            <div class="gallery__card-interaction">
-              <h3 class="gallery__card-title">озеро Брайзес</h3>
-              <button class="gallery__card-like"></button>
+          <li class="gallery__card card">
+            <img class="card__image" src="./images/gallery_lake-Braies.jpg" alt="фото места озеро Брайзес">
+            <div class="card__interaction">
+              <h2 class="card__title">озеро Брайзес</h2>
+              <button class="card__like" type="button"></button>
             </div>
           </li>
-          <li class="gallery__card">
-            <img class="gallery__card-image" src="./images/gallery_elbrus.jpg" alt="фото места Гора Эльбрус">
-            <div class="gallery__card-interaction">
-              <h3 class="gallery__card-title">Гора Эльбрус</h3>
-              <button class="gallery__card-like"></button>
+          <li class="gallery__card card">
+            <img class="card__image" src="./images/gallery_elbrus.jpg" alt="фото места Гора Эльбрус">
+            <div class="card__interaction">
+              <h2 class="card__title">Гора Эльбрус</h2>
+              <button class="card__like" type="button"></button>
             </div>
           </li>
-          <li class="gallery__card">
-            <img class="gallery__card-image" src="./images/gallery_Dombay.jpg" alt="фото места Домбай">
-            <div class="gallery__card-interaction">
-              <h3 class="gallery__card-title">Домбай</h3>
-              <button class="gallery__card-like"></button>
+          <li class="gallery__card card">
+            <img class="card__image" src="./images/gallery_Dombay.jpg" alt="фото места Домбай">
+            <div class="card__interaction">
+              <h2 class="card__title">Домбай</h2>
+              <button class="card__like" type="button"></button>
             </div>
           </li>
-          <li class="gallery__card">
-            <img class="gallery__card-image" src="./images/gallery_Karachayevsk.jpg" alt="фото места Карачаево-Черкессия">
-            <div class="gallery__card-interaction">
-              <h3 class="gallery__card-title">Карачаево-Черкессия</h3>
-              <button class="gallery__card-like" type="button"></button>
+          <li class="gallery__card card">
+            <img class="card__image" src="./images/gallery_Karachayevsk.jpg" alt="фото места Карачаево-Черкессия">
+            <div class="card__interaction">
+              <h2 class="card__title">Карачаево-Черкессия</h2>
+              <button class="card__like" type="button"></button>
             </div>
           </li>
         </ul>
@@ -74,20 +74,20 @@
         ©&#160;2022 Грамс&#160;Александр
       </p>
     </footer>
-    <section class="popup" aria-label="Секция для редактирования профиля">
+    <div class="popup">
       <div class="popup__container">
+        <h2 class="popup__title">Редактировать профиль</h2>
         <form class="popup__form-admin">
-          <h2 class="popup__title">Редактировать профиль</h2>
           <fieldset class="popup__editing-profille">
-            <input class="popup__item popup__item_name" type="text" name="name" required>
-            <input class="popup__item popup__item_activity" type="text" name="activity" required>
+            <input class="popup__item popup__input_type_name" type="text" name="name" required placeholder="Введите имя">
+            <input class="popup__item popup__input_type_activity" type="text" name="activity" required placeholder="Введите хобби">
           </fieldset>
           <input class="popup__button" type="submit" value="Сохранить">
         </form>
         <button class="popup__close" type="button"></button>
       </div>
-    </section>
+    </div>
   </div>
-  <script src="./index.js"></script>
+  <script src="./scripts/index.js"></script>
 </body>
 </html>
