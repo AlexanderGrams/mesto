@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Место</title>
-    <link rel="stylesheet" href="./pages/index.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Место</title>
+  <link rel="stylesheet" href="./pages/index.css">
 </head>
 <body class="body">
   <div class="page">
@@ -28,7 +28,7 @@
             <img class="card__image" src="./images/gallery_Venetia.jpg" alt="фото места Венеция">
             <div class="card__interaction">
               <h2 class="card__title">Венеция</h2>
-              <button class="card__like" type="button"></button>
+              <button class="card__like card__like_active" type="button"></button>
             </div>
           </li>
           <li class="gallery__card card">
@@ -77,7 +77,7 @@
     <div class="popup">
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup__form-admin">
+        <form class="popup__form-admin" name="form-admin">
           <fieldset class="popup__editing-profille">
             <input class="popup__item popup__item_type_name" type="text" name="name" required placeholder="Введите имя">
             <input class="popup__item popup__item_type_activity" type="text" name="activity" required placeholder="Введите хобби">
