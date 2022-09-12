@@ -19,7 +19,7 @@ const formTypeAddCard = popupTypeAddCard.querySelector('.popup__form-admin');
 const popupTypeZoomImg = document.querySelector('.popup_type_zoom-img');
 const popupTypeZoomImgBtnClose = popupTypeZoomImg.querySelector('.popup__close');
 const popupImage = popupTypeZoomImg.querySelector('.popup__image');
-const popupTitleTypeZoomImg = popupTypeZoomImg.querySelector('.popup__title_type_zoom-img');
+const popupSignature = popupTypeZoomImg.querySelector('.popup__signature');
 
 
 const gallery = document.querySelector('.gallery');
@@ -97,7 +97,7 @@ function fillingWithText(){
 function fillingWithImage(evt, name){
   popupImage.src = evt.target.src;
   popupImage.alt = evt.target.alt;
-  popupTitleTypeZoomImg.textContent = name;
+  popupSignature.textContent = name;
 }
 
 // функция открывающая popup
