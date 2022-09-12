@@ -6,5 +6,8 @@
   left: 0;
   background-color: #00000080;
   z-index: 1;
-  display: none;
+  display: flex;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.2s, opacity ease 0.2s;
 }

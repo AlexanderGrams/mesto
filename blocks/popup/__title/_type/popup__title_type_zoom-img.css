@@ -1,0 +1,12 @@
+.popup__title_type_zoom-img {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  color: #fff;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.25;
+}

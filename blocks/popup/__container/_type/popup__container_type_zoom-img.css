@@ -1,0 +1,13 @@
+.popup__container_type_zoom-img {
+  background-color: transparent;
+  padding: 0;
+  max-width: none;
+  width: auto;
+  display: flex;
+}
+
+@media screen and (max-width: 500px) {
+  .popup__container_type_zoom-img {
+    width: calc(100% - 80px);
+  }
+}

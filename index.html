@@ -24,48 +24,6 @@
       </section>
       <section class="gallery" aria-label="Секция с картинками профиля">
         <ul class="gallery__cards">
-          <li class="gallery__card card">
-            <img class="card__image" src="./images/gallery_Venetia.jpg" alt="фото места Венеция">
-            <div class="card__interaction">
-              <h2 class="card__title">Венеция</h2>
-              <button class="card__like card__like_active" type="button"></button>
-            </div>
-          </li>
-          <li class="gallery__card card">
-            <img class="card__image" src="./images/gallery_Kazan-Cathedral.jpg" alt="фото места Казанский собор">
-            <div class="card__interaction">
-              <h2 class="card__title">Казанский собор</h2>
-              <button class="card__like" type="button"></button>
-            </div>
-          </li>
-          <li class="gallery__card card">
-            <img class="card__image" src="./images/gallery_lake-Braies.jpg" alt="фото места озеро Брайзес">
-            <div class="card__interaction">
-              <h2 class="card__title">озеро Брайзес</h2>
-              <button class="card__like" type="button"></button>
-            </div>
-          </li>
-          <li class="gallery__card card">
-            <img class="card__image" src="./images/gallery_elbrus.jpg" alt="фото места Гора Эльбрус">
-            <div class="card__interaction">
-              <h2 class="card__title">Гора Эльбрус</h2>
-              <button class="card__like" type="button"></button>
-            </div>
-          </li>
-          <li class="gallery__card card">
-            <img class="card__image" src="./images/gallery_Dombay.jpg" alt="фото места Домбай">
-            <div class="card__interaction">
-              <h2 class="card__title">Домбай</h2>
-              <button class="card__like" type="button"></button>
-            </div>
-          </li>
-          <li class="gallery__card card">
-            <img class="card__image" src="./images/gallery_Karachayevsk.jpg" alt="фото места Карачаево-Черкессия">
-            <div class="card__interaction">
-              <h2 class="card__title">Карачаево-Черкессия</h2>
-              <button class="card__like" type="button"></button>
-            </div>
-          </li>
         </ul>
       </section>
     </main>
@@ -74,7 +32,7 @@
         ©&#160;2022 Грамс&#160;Александр
       </p>
     </footer>
-    <div class="popup">
+    <div class="popup popup_type_edit-profile">
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
         <form class="popup__form-admin" name="form-admin">
@@ -87,7 +45,37 @@
         <button class="popup__close" type="button"></button>
       </div>
     </div>
+    <div class="popup popup_type_add-card">
+      <div class="popup__container">
+        <h2 class="popup__title">Новое место</h2>
+        <form class="popup__form-admin" name="form-admin">
+          <fieldset class="popup__editing-profille">
+            <input class="popup__item popup__item_type_title" type="text" name="title" required placeholder="Название">
+            <input class="popup__item popup__item_type_link" type="text" name="link" required placeholder="Ссылка на картинку">
+          </fieldset>
+          <input class="popup__button" type="submit" value="Сохранить">
+        </form>
+        <button class="popup__close" type="button"></button>
+      </div>
+    </div>
+    <div class="popup popup_type_zoom-img">
+      <div class="popup__container popup__container_type_zoom-img">
+        <img class="popup__image" src="#" alt="">
+        <h2 class="popup__title_type_zoom-img">#</h2>
+        <button class="popup__close" type="button"></button>
+      </div>
+    </div>
   </div>
+  <template id="card">
+    <li class="gallery__card card">
+      <img class="card__image" src="#" alt="">
+      <div class="card__interaction">
+        <h2 class="card__title"></h2>
+        <button class="card__like" type="button"></button>
+      </div>
+      <button class="card__basket" type="button"></button>
+    </li>
+  </template>
   <script src="./scripts/index.js"></script>
 </body>
 </html>
