@@ -27,39 +27,13 @@ const galleryCards = gallery.querySelector('.gallery__cards');
 
 const cardTemplate = document.querySelector('#card').content;
 
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
 //функция создающая карточку
-function addCard(name, link){
+function createCrad(name, link) {
   const card = cardTemplate.querySelector('.card').cloneNode(true);
+  const cardImage = card.querySelector('.card__image');
 
-  card.querySelector('.card__image').src = link;
-  card.querySelector('.card__image').alt = `изображение: ${name}`;
+  cardImage.src = link;
+  cardImage.alt = `изображение: ${name}`;
   card.querySelector('.card__title').textContent = name;
 
   const cardBtnLike = card.querySelector('.card__like');
@@ -70,31 +44,35 @@ function addCard(name, link){
   const cardBtnBasket = card.querySelector('.card__basket');
   cardBtnBasket.addEventListener('click', () => card.remove());
 
-  const cardImage = card.querySelector('.card__image');
   cardImage.addEventListener('click', evt => {
     openPopup(popupTypeZoomImg);
-    fillingWithImage(evt, name);
+    fillWithImage(evt, name);
   });
+  return card;
+}
 
+//функция добавляющая карточку
+function addCard(name, link){
+  const card = createCrad(name, link);
   galleryCards.prepend(card);
 };
 
 // функция сохраняющая измененные данные
-function formSubmitHandler(event){
+function handlerFormSubmit(event){
   event.preventDefault();
   profileTitle.textContent = popupTypeEditProfileInputName.value;
   profileSubtitle.textContent = popupTypeEditProfileInputActivity.value;
-  closePopup();
+  closePopup(popupTypeEditProfile);
 };
 
 // функция заполняющая текстом значения в полях ввода
-function fillingWithText(){
+function fillWithText(){
   popupTypeEditProfileInputName.value = profileTitle.textContent;
   popupTypeEditProfileInputActivity.value = profileSubtitle.textContent;
 };
 
 // функция заполняющая попап картинкой
-function fillingWithImage(evt, name){
+function fillWithImage(evt, name){
   popupImage.src = evt.target.src;
   popupImage.alt = evt.target.alt;
   popupSignature.textContent = name;
@@ -113,7 +91,7 @@ function closePopup(popup){
 // события открывающее popup
 profileBtnInfo.addEventListener('click', () => {
   openPopup(popupTypeEditProfile);
-  fillingWithText();
+  fillWithText();
 });
 profileBtnAddCard.addEventListener('click', () => openPopup(popupTypeAddCard));
 
@@ -123,15 +101,24 @@ popupTypeAddCardBtnClose.addEventListener('click', () => closePopup(popupTypeAdd
 popupTypeZoomImgBtnClose.addEventListener('click', () => closePopup(popupTypeZoomImg));
 
 // событие сохраняющее изменненные данные
-formTypeEditProfile.addEventListener('submit', formSubmitHandler);
+formTypeEditProfile.addEventListener('submit', handlerFormSubmit);
 
+// событие добавляющее карточку
 formTypeAddCard.addEventListener('submit', event => {
   event.preventDefault();
   addCard(popupTypeAddCardInputTitle.value, popupTypeAddCardInputLink.value);
-  popupTypeAddCardInputTitle.value = '';
-  popupTypeAddCardInputLink.value = '';
+  formTypeAddCard.reset();
   closePopup(popupTypeAddCard);
 });
 
 //добавление карточек при загрузки страницы
 initialCards.forEach(elem => addCard(elem.name, elem.link));
+
+
+const popup = document.querySelectorAll('.popup');
+
+function addPopupAnimation(elem){
+  elem.style.transition = "visibility 0.2s, opacity ease 0.2s";
+};
+
+popup.forEach(item => addPopupAnimation(item));
