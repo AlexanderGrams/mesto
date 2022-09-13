@@ -58,7 +58,7 @@ function addCard(name, link){
 };
 
 // функция сохраняющая измененные данные
-function handlerFormSubmit(event){
+function handleFormSubmit(event){
   event.preventDefault();
   profileTitle.textContent = popupTypeEditProfileInputName.value;
   profileSubtitle.textContent = popupTypeEditProfileInputActivity.value;
@@ -101,7 +101,7 @@ popupTypeAddCardBtnClose.addEventListener('click', () => closePopup(popupTypeAdd
 popupTypeZoomImgBtnClose.addEventListener('click', () => closePopup(popupTypeZoomImg));
 
 // событие сохраняющее изменненные данные
-formTypeEditProfile.addEventListener('submit', handlerFormSubmit);
+formTypeEditProfile.addEventListener('submit', handleFormSubmit);
 
 // событие добавляющее карточку
 formTypeAddCard.addEventListener('submit', event => {
