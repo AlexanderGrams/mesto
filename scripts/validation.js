@@ -7,27 +7,27 @@ const validationConfig = {
   errorClass: 'popup__text-error_visible',
 };
 
-const removeDisableButton = (elem) => {
+const enableButton = (elem) => {
   elem.classList.remove(validationConfig.inactiveButtonClass);
   elem.removeAttribute('disabled');
 };
 
-const makeDisableButton = (elem) => {
+const disableButton = (elem) => {
   elem.classList.add(validationConfig.inactiveButtonClass);
   elem.setAttribute('disabled', true);
 };
 
-const hasfalseInput = (inputArray) => {
+const checkInput = (inputArray) => {
   return inputArray.some(input => {
     return !input.validity.valid;
   });
 };
 
 const convertButton = (inputArray, buttonElement, validationConfig) => {
-  if (hasfalseInput(inputArray)) {
-    makeDisableButton(buttonElement, validationConfig);
+  if (checkInput(inputArray)) {
+    disableButton(buttonElement, validationConfig);
   } else {
-    removeDisableButton(buttonElement, validationConfig);
+    enableButton(buttonElement, validationConfig);
   };
 };
 

@@ -4,6 +4,8 @@ const profileTitle = profile.querySelector('.profile__title');
 const profileSubtitle = profile.querySelector('.profile__subtitle');
 const profileBtnAddCard = profile.querySelector('.profile__button');
 
+const popups = document.querySelectorAll('.popup');
+
 const popupTypeEditProfile = document.querySelector('.popup_type_edit-profile');
 const popupTypeEditProfileBtnClose = popupTypeEditProfile.querySelector('.popup__close');
 const popupTypeEditProfileInputName = popupTypeEditProfile.querySelector('.popup__item_type_name');
@@ -81,12 +83,31 @@ function fillWithImage(evt, name){
 // функция открывающая popup
 function openPopup(popup){
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closeOnButtonEscape);
 }
 
 // функция закрывающая popup
 function closePopup(popup){
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeOnButtonEscape);
 };
+
+// функция закрывающая открытый попап по нажатию Esc
+function closeOnButtonEscape(evt) {
+  if (evt.key === 'Escape') {
+    const popupOpened = document.querySelector('.popup_opened');
+    closePopup(popupOpened)
+  }
+}
+
+// функция закрывающая открытый попап нажадием мыши на задний фон
+popups.forEach(elem => {
+  elem.addEventListener('mousedown', evt => {
+    if (evt.target.classList.contains('popup_opened')) {
+      closePopup(elem);
+    };
+  });
+});
 
 // события открывающее popup
 profileBtnInfo.addEventListener('click', () => {
