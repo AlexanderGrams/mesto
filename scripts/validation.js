@@ -7,12 +7,12 @@ const validationConfig = {
   errorClass: 'popup__text-error_visible',
 };
 
-const enableButton = (elem) => {
+const enableButton = (elem, validationConfig) => {
   elem.classList.remove(validationConfig.inactiveButtonClass);
   elem.removeAttribute('disabled');
 };
 
-const disableButton = (elem) => {
+const disableButton = (elem, validationConfig) => {
   elem.classList.add(validationConfig.inactiveButtonClass);
   elem.setAttribute('disabled', true);
 };

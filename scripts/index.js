@@ -17,6 +17,7 @@ const popupTypeAddCardBtnClose = popupTypeAddCard.querySelector('.popup__close')
 const popupTypeAddCardInputTitle = popupTypeAddCard.querySelector('.popup__item_type_title');
 const popupTypeAddCardInputLink = popupTypeAddCard.querySelector('.popup__item_type_link');
 const formTypeAddCard = popupTypeAddCard.querySelector('.popup__form-admin');
+const popupTypeAddCardBtn = popupTypeAddCard.querySelector('.popup__button');
 
 const popupTypeZoomImg = document.querySelector('.popup_type_zoom-img');
 const popupTypeZoomImgBtnClose = popupTypeZoomImg.querySelector('.popup__close');
@@ -129,6 +130,7 @@ formTypeAddCard.addEventListener('submit', event => {
   event.preventDefault();
   addCard(popupTypeAddCardInputTitle.value, popupTypeAddCardInputLink.value);
   formTypeAddCard.reset();
+  disableButton(popupTypeAddCardBtn, validationConfig);
   closePopup(popupTypeAddCard);
 });
 
@@ -136,10 +138,12 @@ formTypeAddCard.addEventListener('submit', event => {
 initialCards.forEach(elem => addCard(elem.name, elem.link));
 
 
-const popup = document.querySelectorAll('.popup');
 
-function addPopupAnimation(elem){
-  elem.style.transition = "visibility 0.2s, opacity ease 0.2s";
-};
+///////////////////////////////////////////////////////////////////////////////////////
+// без этого, при загрузке страницы на долю секунды появляются попапы и плавно исчезают
+///////////////////////////////////////////////////////////////////////////////////////
+// function addPopupAnimation(elem){
+//   elem.style.transition = "visibility 0.2s, opacity ease 0.2s";
+// };
 
-popup.forEach(item => addPopupAnimation(item));
+// popups.forEach(item => addPopupAnimation(item));
