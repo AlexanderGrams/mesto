@@ -35,7 +35,7 @@
     <div class="popup popup_type_edit-profile">
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup__form-admin" name="form-profile" novalidate>
+        <form class="popup__form-admin" name="formProfile" novalidate>
           <fieldset class="popup__editing-profille">
             <input id="name-input" class="popup__item popup__item_type_name" type="text" name="name" required minlength="2" maxlength="40" placeholder="Введите имя">
             <span id="name-input-error" class="popup__text-error"></span>
@@ -50,7 +50,7 @@
     <div class="popup popup_type_add-card">
       <div class="popup__container">
         <h2 class="popup__title">Новое место</h2>
-        <form class="popup__form-admin" name="form-add" novalidate>
+        <form class="popup__form-admin" name="formAdd" novalidate>
           <fieldset class="popup__editing-profille">
             <input id="title-input" class="popup__item popup__item_type_title" type="text" name="title" required minlength="2" maxlength="30" placeholder="Название">
             <span id="title-input-error" class="popup__text-error"></span>
@@ -80,8 +80,9 @@
       <button class="card__basket" type="button"></button>
     </li>
   </template>
-  <script src="./scripts/array.js"></script>
-  <script src="./scripts/validation.js"></script>
-  <script src="./scripts/index.js"></script>
+  <script type="module" src="./scripts/index.js"></script>
+  <script type="module" src="./scripts/Card.js"></script>
+  <script type="module" src="./scripts/FormValidator.js"></script>
+  <script type="module" src="./scripts/const.js"></script>
 </body>
 </html>

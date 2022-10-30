@@ -1,3 +1,7 @@
+import {Card} from "./Card.js"
+import {initialCards, validationConfig} from './const.js'
+import {FormValidator} from "./FormValidator.js"
+
 const profile = document.querySelector('.profile');
 const profileBtnInfo = profile.querySelector('.profile__info-button');
 const profileTitle = profile.querySelector('.profile__title');
@@ -17,47 +21,31 @@ const popupTypeAddCardBtnClose = popupTypeAddCard.querySelector('.popup__close')
 const popupTypeAddCardInputTitle = popupTypeAddCard.querySelector('.popup__item_type_title');
 const popupTypeAddCardInputLink = popupTypeAddCard.querySelector('.popup__item_type_link');
 const formTypeAddCard = popupTypeAddCard.querySelector('.popup__form-admin');
-const popupTypeAddCardBtn = popupTypeAddCard.querySelector('.popup__button');
 
 const popupTypeZoomImg = document.querySelector('.popup_type_zoom-img');
 const popupTypeZoomImgBtnClose = popupTypeZoomImg.querySelector('.popup__close');
 const popupImage = popupTypeZoomImg.querySelector('.popup__image');
 const popupSignature = popupTypeZoomImg.querySelector('.popup__signature');
 
-
 const gallery = document.querySelector('.gallery');
 const galleryCards = gallery.querySelector('.gallery__cards');
 
-const cardTemplate = document.querySelector('#card').content;
 
-//функция создающая карточку
-function createCrad(name, link) {
-  const card = cardTemplate.querySelector('.card').cloneNode(true);
-  const cardImage = card.querySelector('.card__image');
+//валидация форм
+const validTypeEditProfile = new FormValidator(validationConfig, document.forms.formProfile);
+validTypeEditProfile.enableValidation()
 
-  cardImage.src = link;
-  cardImage.alt = `изображение: ${name}`;
-  card.querySelector('.card__title').textContent = name;
+const validTypeAddCard = new FormValidator(validationConfig, document.forms.formAdd);
+validTypeAddCard.enableValidation()
 
-  const cardBtnLike = card.querySelector('.card__like');
-  cardBtnLike.addEventListener('click', evt => {
-    evt.target.classList.toggle('card__like_active');
-  });
 
-  const cardBtnBasket = card.querySelector('.card__basket');
-  cardBtnBasket.addEventListener('click', () => card.remove());
 
-  cardImage.addEventListener('click', evt => {
-    openPopup(popupTypeZoomImg);
-    fillWithImage(evt, name);
-  });
-  return card;
-}
 
 //функция добавляющая карточку
-function addCard(name, link){
-  const card = createCrad(name, link);
-  galleryCards.prepend(card);
+function addCard(obj){
+  const card = new Card(obj, '#card');
+  const cardElement = card.generateCard();
+  galleryCards.prepend(cardElement);
 };
 
 // функция сохраняющая измененные данные
@@ -75,9 +63,9 @@ function fillWithText(){
 };
 
 // функция заполняющая попап картинкой
-function fillWithImage(evt, name){
-  popupImage.src = evt.target.src;
-  popupImage.alt = evt.target.alt;
+function fillWithImage(src, alt, name){
+  popupImage.src = src;
+  popupImage.alt = alt;
   popupSignature.textContent = name;
 }
 
@@ -128,22 +116,26 @@ formTypeEditProfile.addEventListener('submit', handleFormSubmit);
 // событие добавляющее карточку
 formTypeAddCard.addEventListener('submit', event => {
   event.preventDefault();
-  addCard(popupTypeAddCardInputTitle.value, popupTypeAddCardInputLink.value);
+  const obj = {
+    name: popupTypeAddCardInputTitle.value,
+    link: popupTypeAddCardInputLink.value,
+  }
+  addCard(obj);
   formTypeAddCard.reset();
-  disableButton(popupTypeAddCardBtn, validationConfig);
+  validTypeAddCard.enableValidation()
   closePopup(popupTypeAddCard);
 });
 
 //добавление карточек при загрузки страницы
-initialCards.forEach(elem => addCard(elem.name, elem.link));
+initialCards.forEach(elem => addCard(elem));
+
+//добавление анимации при открытии
+function addPopupAnimation(elem){
+  elem.classList.add('popup_animation');
+};
+
+popups.forEach(item => addPopupAnimation(item));
 
 
 
-///////////////////////////////////////////////////////////////////////////////////////
-// без этого, при загрузке страницы на долю секунды появляются попапы и плавно исчезают
-///////////////////////////////////////////////////////////////////////////////////////
-// function addPopupAnimation(elem){
-//   elem.style.transition = "visibility 0.2s, opacity ease 0.2s";
-// };
-
-// popups.forEach(item => addPopupAnimation(item));
+export {openPopup, popupTypeZoomImg, fillWithImage}

@@ -60,3 +60,4 @@
 @import url(../blocks/popup/__text-error/popup__text-error.css);
 @import url(../blocks/popup/__button/_disabled/popup__button_disabled.css);
 @import url(../blocks/popup/__item/_type/popup__item_type_error.css);
+@import url(../blocks/popup/_animation/popup_animation.css);
