@@ -12,18 +12,18 @@ export class FormValidator {
     this._setEventListeners()
   }
 
-  _enableButton(elem){
-    elem.classList.remove(this.inactiveButtonClass);
-    elem.removeAttribute('disabled');
+  _enableButton(){
+    this._buttonElement.classList.remove(this.inactiveButtonClass);
+    this._buttonElement.removeAttribute('disabled');
   };
 
-  _disableButton(elem){
-    elem.classList.add(this.inactiveButtonClass);
-    elem.setAttribute('disabled', true);
+  _disableButton(){
+    this._buttonElement.classList.add(this.inactiveButtonClass);
+    this._buttonElement.setAttribute('disabled', true);
   };
 
-  _checkInput(inputArray) {
-    return inputArray.some(input => {
+  _checkInput() {
+    return this._inputArray.some(input => {
       return !input.validity.valid;
     });
   };
@@ -34,36 +34,43 @@ export class FormValidator {
     inputError.textContent = '';
   }
 
-  _showInputError(textInput, errorMessage){
+  _showInputError(textInput){
     const inputError = this.form.querySelector(`#${textInput.id}-error`);
     textInput.classList.add(this.inputErrorClass);
-    inputError.textContent = errorMessage;
+    inputError.textContent = textInput.validationMessage;
   }
 
   _isValid(textInput){
     if (!textInput.validity.valid) {
-      this._showInputError(textInput, textInput.validationMessage);
+      this._showInputError(textInput);
     } else {
       this._hideInputError(textInput);
     }
   }
 
-  _convertButton(inputArray, buttonElement){
-    if (this._checkInput(inputArray)) {
-      this._disableButton(buttonElement);
+  _convertButton(){
+    if (this._checkInput()) {
+      this._disableButton();
     } else {
-      this._enableButton(buttonElement);
+      this._enableButton();
     };
   }
 
+  resetValidation() {
+    this._inputArray.forEach(elem => {
+      this._hideInputError(elem);
+      this._convertButton();
+    })
+  }
+
   _setEventListeners(){
-    const inputArray = Array.from(this.form.querySelectorAll(this.inputSelector));
-    const buttonElement = this.form.querySelector(this.submitButtonSelector);
-    this._convertButton(inputArray, buttonElement);
-    inputArray.forEach(elem => {
+    this._inputArray = Array.from(this.form.querySelectorAll(this.inputSelector));
+    this._buttonElement = this.form.querySelector(this.submitButtonSelector);
+    this._convertButton();
+    this._inputArray.forEach(elem => {
       elem.addEventListener('input', () => {
         this._isValid(elem);
-        this._convertButton(inputArray, buttonElement);
+        this._convertButton();
       });
     });
   }
