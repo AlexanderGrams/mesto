@@ -25,11 +25,6 @@ import {
   galleryCards,
 } from "./utils/const.js";
 
-
-
-
-
-///////////////////
 //валидация форм
 const validTypeEditProfile = new FormValidator(validationConfig, formTypeEditProfile);
 validTypeEditProfile.enableValidation()
@@ -37,18 +32,14 @@ validTypeEditProfile.enableValidation()
 const validTypeAddCard = new FormValidator(validationConfig, formTypeAddCard);
 validTypeAddCard.enableValidation()
 
-
-
-
-/////////////////////////////////////
 //редактирование информации профиля
-const userInfoProfile = new UserInfo(profileTitle.textContent, profileSubtitle.textContent, profileTitle, profileSubtitle)
+const userInfoProfile = new UserInfo(profileTitle, profileSubtitle)
 
 const popupEditProfile = new PopupWithForm(
   popupTypeEditProfile,
   {
-    submitEvent: (obj) => {
-      userInfoProfile.setUserInfo(obj.name, obj.activity)
+    submitEvent: (inputData) => {
+      userInfoProfile.setUserInfo(inputData.name, inputData.activity)
       popupEditProfile.close();
     }
   }
@@ -56,14 +47,13 @@ const popupEditProfile = new PopupWithForm(
 popupEditProfile.setEventListeners()
 
 profileBtnInfo.addEventListener('click', () => {
-  userInfoProfile.getUserInfo(popupTypeEditProfileInputName, popupTypeEditProfileInputActivity)
+  const inputData = userInfoProfile.getUserInfo()
+  popupTypeEditProfileInputName.value = inputData.name
+  popupTypeEditProfileInputActivity.value = inputData.activity
   validTypeEditProfile.resetValidation()
   popupEditProfile.open()
 })
 
-
-
-//////////////////////////////////////
 // Инициализация карточек по умолчанию
 const cardList = new Section({
   items: initialCards,
@@ -74,16 +64,15 @@ const cardList = new Section({
   }
 }, galleryCards)
 
-
-
-
-//////////////////////////
 //добавление карточки
 const popupAddCard = new PopupWithForm(
   popupTypeAddCard,
   {
-    submitEvent: (obj) => {
-      cardList.renderItems(obj);
+    submitEvent: (inputData) => {
+      const card = new Card(inputData, '#card', handleCardClick);
+      const cardElement = card.generateCard();
+      cardList.addItem(cardElement);
+
       popupAddCard.close();
       validTypeAddCard.resetValidation()
     }
@@ -97,21 +86,15 @@ profileBtnAddCard.addEventListener('click', () => {
 
 cardList.renderItems();
 
-
-///////////////////////////
 //увиличение картинки
 const popupOpenImage = new PopupWithImage(popupTypeZoomImg);
 popupOpenImage.setEventListeners()
 
 //функция обрабатывающая клик по картинки карточки
 function handleCardClick(name, link) {
-  popupOpenImage.open(name, link, popupImage, popupSignature);
+  popupOpenImage.open(name, link);
 }
 
-
-
-
-//////////////////////////////////
 //добавление анимации при открытии
 function addPopupAnimation(elem){
   elem.classList.add('popup_animation');
