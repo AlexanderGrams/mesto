@@ -5,16 +5,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Место</title>
-  <link rel="stylesheet" href="./pages/index.css">
 </head>
 <body class="body">
   <div class="page">
     <header class="header">
-      <img class="header__logo" src="./images/logo.svg" alt="логотип Место">
+      <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="логотип Место">
     </header>
     <main class="main">
       <section class="profile" aria-label="Секция с информацией профиля">
-        <img class="profile__avatar" src="./images/avatar.jpg" alt="аватар профиля">
+        <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="аватар профиля">
         <div class="profile__info">
           <h1 class="profile__title">Жак-Ив Кусто</h1>
           <button class="profile__info-button" type="button"></button>
@@ -80,6 +79,5 @@
       <button class="card__basket" type="button"></button>
     </li>
   </template>
-  <script type="module" src="./scripts/index.js"></script>
 </body>
 </html>
