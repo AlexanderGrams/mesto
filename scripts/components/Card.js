@@ -1,6 +1,6 @@
 export class Card {
   constructor(elem, templateSelector, handleCardClick){
-    this._name = elem.name;
+    this._title = elem.title;
     this._link = elem.link;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
@@ -27,8 +27,8 @@ export class Card {
     this._setEventListeners();
 
     this._cardImage.src = this._link;
-    this._cardImage.alt = `изображение: ${this._name}`;
-    this._cardTitle.textContent = this._name;
+    this._cardImage.alt = `изображение: ${this._title}`;
+    this._cardTitle.textContent = this._title;
 
     return this._element;
   }
@@ -52,7 +52,7 @@ export class Card {
       this._removeCard(this._element)
     });
     this._cardImage.addEventListener('click', () => {
-      this._handleCardClick(this._name, this._link)
+      this._handleCardClick(this._title, this._link)
     })
   }
 }
