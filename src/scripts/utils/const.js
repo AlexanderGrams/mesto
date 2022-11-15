@@ -50,8 +50,6 @@ export const popupTypeAddCard = document.querySelector('.popup_type_add-card');
 export const formTypeAddCard = document.forms.formAdd;
 
 export const popupTypeZoomImg = document.querySelector('.popup_type_zoom-img');
-export const popupImage = popupTypeZoomImg.querySelector('.popup__image');
-export const popupSignature = popupTypeZoomImg.querySelector('.popup__signature');
 
 export const gallery = document.querySelector('.gallery');
 export const galleryCards = gallery.querySelector('.gallery__cards');

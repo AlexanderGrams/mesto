@@ -40,20 +40,22 @@ export class Card {
 
   //удаление карточки
   _removeCard(){
-    this._element.remove()
+    this._element.remove();
+    this._element = null;
   }
 
   //слушатели событий
   _setEventListeners() {
     this._cardLike.addEventListener('click', () => {
-      this._handleLike(this._element)
+      this._handleLike()
     });
     this._cardBasket.addEventListener('click', () => {
-      this._removeCard(this._element)
+      this._removeCard()
     });
     this._cardImage.addEventListener('click', () => {
       this._handleCardClick(this._title, this._link)
     })
   }
 }
+
 

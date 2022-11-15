@@ -20,8 +20,6 @@ import {
   popupTypeAddCard,
   formTypeAddCard,
   popupTypeZoomImg,
-  popupImage,
-  popupSignature,
   galleryCards,
 } from "./utils/const.js";
 
@@ -54,13 +52,18 @@ profileBtnInfo.addEventListener('click', () => {
   popupEditProfile.open()
 })
 
+//функция создания карточки
+function createCard(data) {
+  const card = new Card(data, '#card', handleCardClick);
+  const cardElement = card.generateCard();
+  return cardElement
+}
+
 // Инициализация карточек по умолчанию
 const cardList = new Section({
   items: initialCards,
   renderer: (item) => {
-    const card = new Card(item, '#card', handleCardClick);
-    const cardElement = card.generateCard();
-    cardList.addItem(cardElement);
+    cardList.addItem(createCard(item));
   }
 }, galleryCards)
 
@@ -69,9 +72,7 @@ const popupAddCard = new PopupWithForm(
   popupTypeAddCard,
   {
     submitEvent: (inputData) => {
-      const card = new Card(inputData, '#card', handleCardClick);
-      const cardElement = card.generateCard();
-      cardList.addItem(cardElement);
+      cardList.addItem(createCard(inputData));
 
       popupAddCard.close();
       validTypeAddCard.resetValidation()
