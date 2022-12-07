@@ -25,9 +25,9 @@ export const formTypeAddCard = document.forms.formAdd;
 
 export const popupTypeZoomImg = document.querySelector('.popup_type_zoom-img');
 
-export const popupTypeQuestionRemove = document.querySelector('.popup_type_question_remove');
+export const popupTypeQuestionRemove = document.querySelector('.popup_type_question-remove');
 
-export const popupTypeUpdateAvatar = document.querySelector('.popup_type_update_avatar');
+export const popupTypeUpdateAvatar = document.querySelector('.popup_type_update-avatar');
 export const btnUpdateAvatar = profile.querySelector('.profile__btn-avatar');
 export const formTypeUpdateAvatar = document.forms.formUpdateAvatar;
 
