@@ -17,6 +17,7 @@
 /* стили profile */
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
+@import url(../blocks/profile/__btn-avatar/profile__btn-avatar.css);
 @import url(../blocks/profile/__info/profile__info.css);
 @import url(../blocks/profile/__title/profile__title.css);
 @import url(../blocks/profile/__info-button/profile__info-button.css);
@@ -29,8 +30,11 @@
 @import url(../blocks/card/__interaction/card__interaction.css);
 @import url(../blocks/card/__title/card__title.css);
 @import url(../blocks/card/__like/card__like.css);
-@import url(../blocks/card/__like/_active/card__like_active.css);
+@import url(../blocks/card/__like-btn/card__like-btn.css);
+@import url(../blocks/card/__like-btn/_active/card__like_active.css);
 @import url(../blocks/card/__basket/card__basket.css);
+@import url(../blocks/card/__like-number/card__like-number.css);
+@import url(../blocks/card/__basket-hidden/card__basket-hidden.css);
 
 /* стили gallery */
 @import url(../blocks/gallery/gallery.css);

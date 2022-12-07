@@ -1,30 +1,3 @@
-export const initialCards = [
-  {
-    title: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    title: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    title: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    title: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    title: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    title: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
 export const validationConfig = {
   formSelector: '.popup__form-admin',
   inputSelector: '.popup__item',
@@ -37,6 +10,7 @@ export const profile = document.querySelector('.profile');
 export const profileBtnInfo = profile.querySelector('.profile__info-button');
 export const profileTitle = profile.querySelector('.profile__title');
 export const profileSubtitle = profile.querySelector('.profile__subtitle');
+export const profileBtnAvatar = profile.querySelector('.profile__btn-avatar');
 export const profileBtnAddCard = profile.querySelector('.profile__button');
 
 export const popups = document.querySelectorAll('.popup');
@@ -50,6 +24,12 @@ export const popupTypeAddCard = document.querySelector('.popup_type_add-card');
 export const formTypeAddCard = document.forms.formAdd;
 
 export const popupTypeZoomImg = document.querySelector('.popup_type_zoom-img');
+
+export const popupTypeQuestionRemove = document.querySelector('.popup_type_question_remove');
+
+export const popupTypeUpdateAvatar = document.querySelector('.popup_type_update_avatar');
+export const btnUpdateAvatar = profile.querySelector('.profile__btn-avatar');
+export const formTypeUpdateAvatar = document.forms.formUpdateAvatar;
 
 export const gallery = document.querySelector('.gallery');
 export const galleryCards = gallery.querySelector('.gallery__cards');
