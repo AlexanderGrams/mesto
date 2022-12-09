@@ -23,6 +23,7 @@
 @import url(../blocks/profile/__info-button/profile__info-button.css);
 @import url(../blocks/profile/__subtitle/profile__subtitle.css);
 @import url(../blocks/profile/__button/profile__button.css);
+@import url(../blocks/profile/__avatar-image/profile__avatar-image.css);
 
 /* стили cadr */
 @import url(../blocks/card/card.css);

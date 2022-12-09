@@ -7,19 +7,15 @@ export default class PopupWithSubmit extends Popup {
     this._clickEvent = clickEvent;
   }
 
-  open(userId, card){
+  open(cardId, card){
     super.open();
-    this._userId = userId;
-    this._element = card;
+    this._setEventListeners(cardId, card)
   }
 
-  setEventListeners(){
+  _setEventListeners(cardId, card){
     super.setEventListeners();
     this._popupButton.addEventListener("click", () => {
-      this._clickEvent(this._userId)
-      this._element.remove();
-      this._element = null;
-      this.close();
+      this._clickEvent(cardId, card)
     })
   }
 }

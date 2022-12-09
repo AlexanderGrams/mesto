@@ -6,8 +6,9 @@
   padding: 0;
   border: none;
   /* background: url(../../../images/avatar.jpg); */
-  background-position: center;
+  /* background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
   overflow: hidden;
+  position: relative;
 }

@@ -1,6 +1,7 @@
 export class Card {
-  constructor(elem, templateSelector, handleCardClick, clickEvent, {giveLike, deletLike}){
+  constructor(elem, templateSelector, handleCardClick, clickEvent, userDefaultId, {giveLike, deletLike}){
     this._clickEvent = clickEvent;
+    this._userDefaultId = userDefaultId;
     this._userId = elem.owner._id;
     this._cardId = elem._id;
     this._likeArray = elem.likes;
@@ -38,10 +39,10 @@ export class Card {
     this._cardTitle.textContent = this._title;
     this.renderLikes(this._likeArray)
     if(!(this._checkLike())){
-      this._handleLike()
+      this.handleLike()
     }
 
-    if(!(this._userId === 'acc32e1d0cde3aab0a681560')){
+    if(!(this._userId === this._userDefaultId)){
       this._cardBasket.classList.add('card__basket-hidden')
     }
 
@@ -49,18 +50,23 @@ export class Card {
   }
 
   renderLikes(likes){
+    this._likeArray = likes;
     this._cardLikeQuantity.textContent = likes.length;
   }
 
+  renderLikeArray(likesArray){
+    card._likeArray = likesArray
+  }
+
   //обработчик лайка
-  _handleLike() {
+  handleLike() {
     this._cardLike.classList.toggle('card__like-btn_active');
   }
 
   _checkLike(){
     let flag = true
     this._likeArray.forEach(elem => {
-      if(elem._id === 'acc32e1d0cde3aab0a681560'){
+      if(elem._id === this._userDefaultId){
         flag = false
       }
     })
@@ -72,10 +78,10 @@ export class Card {
     this._cardLike.addEventListener('click', () => {
       if(this._checkLike()){
         this._giveLike(this._cardId)
-        this._handleLike()
+        // this._handleLike()
       }else{
         this._deletLike(this._cardId)
-        this._handleLike()
+        // this._handleLike()
       }
     });
     this._cardBasket.addEventListener('click', () => {

@@ -57,9 +57,9 @@ export class FormValidator {
   }
 
   resetValidation() {
+    this._convertButton();
     this._inputArray.forEach(elem => {
       this._hideInputError(elem);
-      this._convertButton();
     })
   }
 
