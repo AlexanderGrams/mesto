@@ -11,24 +11,54 @@ import UserInfo from "./components/UserInfo.js";
 import Api from "./components/Api.js";
 import {
   profileBtnInfo,
-  profileTitle,
-  profileSubtitle,
-  profileBtnAvatar,
   profileBtnAddCard,
+  selectorProfileTitle,
+  selectorProfileSubtitle,
+  selectorProfileBtnAvatar,
   popups,
-  popupTypeEditProfile,
+  selectorTypeEditProfile,
   popupTypeEditProfileInputName,
   popupTypeEditProfileInputActivity,
-  popupTypeUpdateAvatar,
+  selectorTypeUpdateAvatar,
   btnUpdateAvatar,
   formTypeUpdateAvatar,
   formTypeEditProfile,
-  popupTypeAddCard,
+  selectorTypeAddCard,
   formTypeAddCard,
-  popupTypeZoomImg,
+  selectorTypeZoomImg,
   galleryCards,
-  popupTypeQuestionRemove
+  selectorTypeQuestionRemove,
 } from "./utils/const.js";
+
+//ассинхронные запросы
+const api = new Api({
+  baseUrl: 'https://nomoreparties.co/v1/cohort-54',
+  headers: {
+    authorization: '2d501c6a-6776-4e0b-86d9-79075000c37d',
+    'Content-Type': 'application/json'
+  }
+});
+
+let userId
+
+//инициализация информации о пользователе
+const initialUserInfo = api.getInfoUser()
+                          .then((data) => {
+                            userId = data._id
+                            userInfoProfile.setUserInfo(data.name, data.about, data.avatar)
+                          })
+
+//инициализация карточек
+const initialCards = api.getInitialCards()
+                      .then((data) => {
+                        cardList.renderItems(data);
+                      })
+
+//отрисовка инициализации
+Promise.all([initialUserInfo, initialCards])
+  .catch((err) => {
+    console.log(err);
+  });
 
 //валидация форм
 const validTypeEditProfile = new FormValidator(validationConfig, formTypeEditProfile);
@@ -41,14 +71,19 @@ const validTypeUpdateAvatar = new FormValidator(validationConfig, formTypeUpdate
 validTypeUpdateAvatar.enableValidation()
 
 //редактирование информации профиля
-const userInfoProfile = new UserInfo(profileTitle, profileSubtitle, profileBtnAvatar)
+const userInfoProfile = new UserInfo({
+  title: selectorProfileTitle,
+  subtitle: selectorProfileSubtitle,
+  btnAvatar: selectorProfileBtnAvatar,
+})
 
 const popupEditProfile = new PopupWithForm(
-  popupTypeEditProfile,
+  selectorTypeEditProfile,
   {
     submitEvent: (inputData) => {
       api.giveInfoUser(inputData.name, inputData.activity)
         .then (()=> {
+          userInfoProfile.setUserInfo(inputData.name, inputData.activity)
           popupEditProfile.close();
         })
         .catch((err) => {
@@ -57,8 +92,6 @@ const popupEditProfile = new PopupWithForm(
         .finally(()=>{
           popupEditProfile.renderLoading(false)
         })
-
-      userInfoProfile.setUserInfo(inputData.name, inputData.activity)
     }
   }
 )
@@ -72,24 +105,28 @@ profileBtnInfo.addEventListener('click', () => {
   popupEditProfile.open()
 })
 
-const popupQuestionRemove = new PopupWithSubmit(popupTypeQuestionRemove, {
-  clickEvent: (userID) => {
-    api.deletCard(userID)
+const popupQuestionRemove = new PopupWithSubmit(selectorTypeQuestionRemove, {
+  clickEvent: (cardID, card) => {
+    api.deletCard(cardID)
+      .then(() => {
+        card.remove();
+        card = null;
+        popupQuestionRemove.close();
+      })
       .catch((err) => {
         console.log(err);
       });
   },
 })
-popupQuestionRemove.setEventListeners()
 
 //функция создания карточки
 function createCard(data) {
-  const card = new Card(data, '#card', handleCardClick, popupQuestionRemove, {
+  const card = new Card(data, '#card', handleCardClick, popupQuestionRemove, userId, {
     giveLike: (cardId) => {
       api.giveLike(cardId)
         .then(data => {
-          card.renderLikes(data.likes)
-          card._likeArray = data.likes
+          card.renderLikes(data.likes);
+          card.handleLike();
         })
         .catch((err) => {
           console.log(err);
@@ -98,8 +135,8 @@ function createCard(data) {
     deletLike: (cardId) => {
       api.deletLike(cardId)
       .then(data => {
-        card.renderLikes(data.likes)
-        card._likeArray = data.likes
+        card.renderLikes(data.likes);
+        card.handleLike();
       })
       .catch((err) => {
         console.log(err);
@@ -119,7 +156,7 @@ const cardList = new Section({
 
 //добавление карточки
 const popupAddCard = new PopupWithForm(
-  popupTypeAddCard,
+  selectorTypeAddCard,
   {
     submitEvent: (inputData) => {
       api.giveCard(inputData.name, inputData.link)
@@ -133,25 +170,24 @@ const popupAddCard = new PopupWithForm(
         .finally(()=>{
           popupAddCard.renderLoading(false)
         });
-
-      validTypeAddCard.resetValidation()
     }
   }
 )
 popupAddCard.setEventListeners()
 
 profileBtnAddCard.addEventListener('click', () => {
+  validTypeAddCard.resetValidation()
   popupAddCard.open()
 })
 
 //обнавление аватара
 const popupUpdateAvatar = new PopupWithForm(
-  popupTypeUpdateAvatar,
+  selectorTypeUpdateAvatar,
   {
     submitEvent: (inputData) => {
       api.giveAvatar(inputData.link)
         .then(data => {
-          profileBtnAvatar.style.backgroundImage = `url(${data.avatar})`;
+          userInfoProfile.setUserInfo(data.name, data.activity, data.avatar)
           popupUpdateAvatar.close();
         })
         .catch((err) => {
@@ -160,19 +196,18 @@ const popupUpdateAvatar = new PopupWithForm(
         .finally(()=>{
           popupUpdateAvatar.renderLoading(false)
         });
-
-      validTypeUpdateAvatar.resetValidation()
     }
   }
 )
 popupUpdateAvatar.setEventListeners()
 
 btnUpdateAvatar.addEventListener('click', () => {
+  validTypeUpdateAvatar.resetValidation()
   popupUpdateAvatar.open()
 })
 
 //увиличение картинки
-const popupOpenImage = new PopupWithImage(popupTypeZoomImg);
+const popupOpenImage = new PopupWithImage(selectorTypeZoomImg);
 popupOpenImage.setEventListeners()
 
 //функция обрабатывающая клик по картинки карточки
@@ -186,33 +221,3 @@ function addPopupAnimation(elem){
 };
 
 popups.forEach(item => addPopupAnimation(item));
-
-
-//ассинхронные запросы
-const api = new Api({
-  baseUrl: 'https://nomoreparties.co/v1/cohort-54',
-  headers: {
-    authorization: '2d501c6a-6776-4e0b-86d9-79075000c37d',
-    'Content-Type': 'application/json'
-  }
-});
-
-//наполнение профиля данными
-api.getInfoUser()
-  .then((data) => {
-    userInfoProfile.setUserInfo(data.name, data.about, data.avatar)
-    return data
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-
-//добавление карточек
-api.getInitialCards()
-  .then((data) => {
-    cardList.renderItems(data);
-    return data;
-  })
-  .catch((err) => {
-    console.log(err);
-  });

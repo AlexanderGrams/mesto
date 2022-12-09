@@ -1,8 +1,8 @@
 export default class UserInfo {
-  constructor(profileTitle, profileSubtitle, profileBtnAvatar) {
-    this._profileTitle = profileTitle;
-    this._profileSubtitle = profileSubtitle;
-    this._profileBtnAvatar = profileBtnAvatar;
+  constructor(selectorsObject) {
+    this._profileTitle = document.querySelector(selectorsObject.title);
+    this._profileSubtitle = document.querySelector(selectorsObject.subtitle);
+    this._profileBtnAvatar = document.querySelector(selectorsObject.btnAvatar);
   }
 
   getUserInfo(){
@@ -16,7 +16,7 @@ export default class UserInfo {
     this._profileTitle.textContent = name;
     this._profileSubtitle.textContent = activity;
     if(avatar){
-      this._profileBtnAvatar.style.backgroundImage = `url(${avatar})`;
+      this._profileBtnAvatar.src = avatar;
     }
   }
 }
