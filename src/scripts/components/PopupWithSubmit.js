@@ -1,21 +1,24 @@
 import Popup from "./Popup.js"
 
 export default class PopupWithSubmit extends Popup {
-  constructor(popupElement, {clickEvent} ){
+  constructor(popupElement){
     super(popupElement);
     this._popupButton = this._popupElement.querySelector('.popup__button');
-    this._clickEvent = clickEvent;
   }
 
-  open(cardId, card){
+  open(){
     super.open();
-    this._setEventListeners(cardId, card)
+    this._setEventListeners()
   }
 
-  _setEventListeners(cardId, card){
+  changeSubmitHandler(newSubmitHandler) {
+    this._clickEvent = newSubmitHandler;
+  }
+
+  _setEventListeners(){
     super.setEventListeners();
     this._popupButton.addEventListener("click", () => {
-      this._clickEvent(cardId, card)
+      this._clickEvent()
     })
   }
 }
